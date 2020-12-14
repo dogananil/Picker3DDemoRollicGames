@@ -14,7 +14,12 @@ public class LevelManager : MonoBehaviour
     {
         TextAsset jsonInfo = Resources.Load<TextAsset>("Level/level_" + levelNumber);
         levelProperties = JsonUtility.FromJson<LevelProperties>(jsonInfo.text);
-        level = levelNumber;
+        if(level%9==0)
+        {
+            levelNumber = 0;
+            level = levelNumber;
+        }
+        
         GameManager.INSTANCE.uiManager.ResetUI(level);
         CreateLevel(levelNumber);
     }
